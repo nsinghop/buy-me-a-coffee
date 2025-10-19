@@ -5,22 +5,21 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json());
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://hireme.codesingh.in/buymeacoffee');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    
-    // Handle preflight requests
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
-    }
-    
-    next();
-});
 
 
-const PORT = process.env.PORT || 8080;
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://hireme.codesingh.in'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
+
+
+const PORT = process.env.PORT || 3000;
 
 
 const Razorpay = require('razorpay');
