@@ -10,6 +10,7 @@ app.use(express.json());
 const allowedOrigins = [
   'http://localhost:5173',
   'https://hireme.codesingh.in',
+  'https://connect.masternow.in/',
   'https://connect.masternow.in'
 ];
 
